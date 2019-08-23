@@ -83,55 +83,39 @@ export default {
   // umi routes: https://umijs.org/zh/guide/router.html
   routes: [
     {
+      name: '登录',
+      path: '/login',
+      component: './user/login'
+    },
+    {
       path: '/',
       component: '../layouts/BasicLayout',
       Routes: ['src/pages/Authorized'],
       authority: ['admin', 'user'],
       routes: [
         {
-          path: '/',
-          name: 'welcome',
-          icon: 'smile',
-          component: './Welcome',
+          name: '数据字典',
+          icon: 'table',
+          path: '/data-dictionary',
+          component: './data-dictionary/data-father'
         },
+        // {
+        //   path: '/',
+        //   name: 'welcome',
+        //   icon: 'smile',
+        //   component: './Welcome',
+        // },
         {
           name: '题库列表',
           icon: 'table',
-          path: '/list',
-          routes: [
-            {
-              name: '题库列表',
-              path: '/list/table-list',
-              component: './list/table-list',
-            },
-            {
-              name: '错误页面',
-              path: '/list/fail',
-              component: './list/fail',
-            },
-            {
-              name: '题目详情',
-              path: '/list/basic',
-              component: './list/basic',
-            },
-          ],
+          path: '/',
+          component: './list/table-list'
         },
         {
-          name: 'success',
-          path: '/result/success',
-          component: './result/success',
+          name: '登录',
+          path: '/login',
+          component: './user/login'
         },
-        {
-          name: 'fail',
-          path: '/result/fail',
-          component: './result/fail',
-        },
-        {
-          name: 'login',
-          path: '/user/login',
-          component: './user/login',
-        },
-
         {
           path: '/NewPage',
           name: 'test',
@@ -149,7 +133,7 @@ export default {
   ],
   // Theme for antd: https://ant.design/docs/react/customize-theme-cn
   theme: {
-    'primary-color': primaryColor,
+    'primary-color': primaryColor
   },
   define: {
     ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION:

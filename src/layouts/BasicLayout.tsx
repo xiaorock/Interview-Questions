@@ -7,6 +7,7 @@ import ProLayout, {
   MenuDataItem,
   BasicLayoutProps as ProLayoutProps,
   Settings,
+  DefaultFooter
 } from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
 import Link from 'umi/link';
@@ -38,10 +39,24 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
     const localItem = { ...item, children: item.children ? menuDataRender(item.children) : [] };
     return Authorized.check(item.authority, localItem, null) as MenuDataItem;
   });
+const links = [
+  {
+    key: 'xiao',
+    title: '中瑞UED',
+    href: '',
+    blankTarget: true,
+  }
+]
+
+const Copyright = '中瑞集团';
 
 const footerRender: BasicLayoutProps['footerRender'] = (_, defaultDom) => {
   if (!isAntDesignPro()) {
-    return defaultDom;
+    return (
+      <>
+        <DefaultFooter links={links} copyright={Copyright}></DefaultFooter>
+      </>
+    );
   }
 
   return (
@@ -104,10 +119,10 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         return <Link to={menuItemProps.path}>{defaultDom}</Link>;
       }}
       breadcrumbRender={(routers = []) => [
-        {
-          path: '/',
-          breadcrumbName: '首页',
-        },
+        // {
+        //   path: '/',
+        //   breadcrumbName: '首页',
+        // },
         ...routers,
       ]}
       itemRender={(route, params, routes, paths) => {
@@ -115,8 +130,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = props => {
         return first ? (
           <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
         ) : (
-          <span>{route.breadcrumbName}</span>
-        );
+            <span>{route.breadcrumbName}</span>
+          );
       }}
       footerRender={footerRender}
       menuDataRender={menuDataRender}

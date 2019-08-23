@@ -16,7 +16,6 @@ export interface GlobalHeaderRightProps extends ConnectProps {
 class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
   onMenuClick = (event: ClickParam) => {
     const { key } = event;
-
     if (key === 'logout') {
       const { dispatch } = this.props;
 
@@ -69,14 +68,14 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         </span>
       </HeaderDropdown>
     ) : (
-      <Spin
-        size="small"
-        style={{
-          marginLeft: 8,
-          marginRight: 8,
-        }}
-      />
-    );
+        <Spin
+          size="small"
+          style={{
+            marginLeft: 8,
+            marginRight: 8,
+          }}
+        />
+      );
   }
 }
 
